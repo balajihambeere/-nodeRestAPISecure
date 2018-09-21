@@ -42,7 +42,7 @@ const updateCustomer = (request, response) => {
 }
 
 const deleteCustomer = (request, response) => {
-    Customer.remove({ _id: request.params.customerId }, (error, customer) => {
+    Customer.deleteOne({ _id: request.params.customerId }, (error, customer) => {
         if (error) {
             response.send(err);
         }
