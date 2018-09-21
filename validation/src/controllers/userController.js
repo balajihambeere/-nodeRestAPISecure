@@ -3,9 +3,16 @@ var UserSchema = require('../models/userModel');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
+const { validationResult } = require('express-validator/check');
+
 const User = mongoose.model('User', UserSchema);
 
 const register = (request, response) => {
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+        return response.status(422).json({ errors: errors.array() });
+    }
+
     let newUser = new User(request.body);
     newUser.password = bcrypt.hashSync(request.body.password, 10);
     newUser.save((error, user) => {
