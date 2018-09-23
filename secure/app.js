@@ -39,8 +39,8 @@ app.use((request, response, next) => {
 
 routes(app);
 
-app.get('/', (req, res) =>
-    res.send(`Server is running on port ${PORT}`)
+app.get('/', (request, response) =>
+    response.send(`Server is running on port ${PORT}`)
 );
 
 app.listen(PORT, () =>

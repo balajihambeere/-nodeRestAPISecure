@@ -1,6 +1,6 @@
 var customer = require('../controllers/customerController');
 
-var user = require('../controllers/userController')
+var user = require('../controllers/userController');
 
 const routes = (app) => {
 
