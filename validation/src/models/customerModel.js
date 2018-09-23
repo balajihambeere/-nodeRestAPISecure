@@ -19,6 +19,6 @@ const CustomerSchema = new Schema({
         type: String,
         required: 'Enter a email address'
     }
-})
+});
 
 module.exports = CustomerSchema;

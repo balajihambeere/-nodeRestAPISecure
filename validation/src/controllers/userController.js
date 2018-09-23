@@ -28,7 +28,7 @@ const register = (request, response) => {
 const login = (request, response) => {
     User.findOne({ username: request.body.username }, (error, user) => {
         if (error) {
-            throw err;
+            throw error;
         }
         if (!user) {
             response.status(401).json({ message: 'Authentication failed. No user found!' });
@@ -49,10 +49,10 @@ const isAuthenticated = (request, response, next) => {
     } else {
         return response.status(401).json({ message: 'Unauthorized user!' });
     }
-}
+};
 
 module.exports = {
     register,
     login,
     isAuthenticated
-}
+};
