@@ -23,7 +23,7 @@ const register = (request, response) => {
             response.json(user);
         }
     });
-}
+};
 
 const login = (request, response) => {
     User.findOne({ username: request.body.username }, (error, user) => {
@@ -41,7 +41,7 @@ const login = (request, response) => {
             }
         }
     });
-}
+};
 
 const isAuthenticated = (request, response, next) => {
     if (request.user) {

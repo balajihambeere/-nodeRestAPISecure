@@ -13,8 +13,7 @@ const routes = (app) => {
         check('lastName').not().isEmpty().withMessage('last name is required'),
         check('email').isEmail().withMessage('must be an email'),
         check('phone').not().isEmpty().withMessage('phone number is required')
-    ],
-        user.isAuthenticated, customer.createCustomer);
+    ], user.isAuthenticated, customer.createCustomer);
 
     app.route('/customer/:customerId').get(customer.getCustomerById);
 
@@ -23,8 +22,7 @@ const routes = (app) => {
         check('lastName').not().isEmpty().withMessage('last name is required'),
         check('email').isEmail().withMessage('must be an email'),
         check('phone').not().isEmpty().withMessage('phone number is required')
-    ],
-        user.isAuthenticated, customer.updateCustomer);
+    ], user.isAuthenticated, customer.updateCustomer);
 
     app.route('/customer/:customerId').delete(user.isAuthenticated, customer.deleteCustomer);
 

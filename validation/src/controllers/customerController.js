@@ -38,10 +38,12 @@ const getCustomerById = (request, response) => {
 };
 
 const updateCustomer = (request, response) => {
+    
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
         return response.status(422).json({ errors: errors.array() });
     }
+    
     Customer.findOneAndUpdate({ _id: request.params.customerId }, request.body, { new: true },
         (error, customer) => {
             if (error) {

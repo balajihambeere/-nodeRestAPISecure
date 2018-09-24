@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var UserSchema = require('../models/userModel');
 var bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
 
 const User = mongoose.model('User', UserSchema);
+
+var jwt = require('jsonwebtoken');
 
 const register = (request, response) => {
     let newUser = new User(request.body);

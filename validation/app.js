@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-// //JWT middleware setup
+// JWT middleware setup
 app.use((request, response, next) => {
     if (request.headers && request.headers.authorization && request.headers.authorization.split(' ')[0] === 'JWT') {
         jsonwebtoken.verify(request.headers.authorization.split(' ')[1], 'SIGNIN', (error, user) => {

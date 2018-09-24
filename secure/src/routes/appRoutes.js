@@ -17,5 +17,5 @@ const routes = (app) => {
     app.route('/register').post(user.register);
 
     app.route('/login').post(user.login);
-}
+};
 module.exports = routes;
