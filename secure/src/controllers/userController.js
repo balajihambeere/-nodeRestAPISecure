@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var UserSchema = require('../models/userModel');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 const User = mongoose.model('User', UserSchema);
 
@@ -11,10 +11,10 @@ const register = (request, response) => {
     newUser.password = bcrypt.hashSync(request.body.password, 10);
     newUser.save((error, user) => {
         if (error) {
-            response.send(error);
+            return  response.send(error);
         } else {
             user.password = undefined;
-            response.json(user);
+            return  response.json(user);
         }
     });
 };
@@ -25,10 +25,10 @@ const login = (request, response) => {
             throw error;
         }
         if (!user) {
-            response.status(401).json({ message: 'Authentication failed. No user found!' });
+            return  response.status(401).json({ message: 'Authentication failed. No user found!' });
         } else if (user) {
             if (!user.comparePassword(request.body.password, user.password)) {
-                response.status(401).json({ message: 'Authentication failed. Wrong password!' });
+                return response.status(401).json({ message: 'Authentication failed. Wrong password!' });
             }
             else {
                 return response.json({ token: jwt.sign({ username: user.username, _id: user.id }, 'SIGNIN') });

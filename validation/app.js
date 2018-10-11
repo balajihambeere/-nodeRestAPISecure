@@ -1,9 +1,12 @@
 var express = require('express');
+var cors = require('cors');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var routes = require('./src/routes/appRoutes');
 var jsonwebtoken = require('jsonwebtoken');
 var app = new express();
+
+app.use(cors());
 
 const PORT = 3000;
 
@@ -43,6 +46,6 @@ app.get('/', (request, response) =>
     response.send(`Server is running on port ${PORT}`)
 );
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
     console.log(`Server is running on port ${PORT}`)
 );
